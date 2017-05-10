@@ -104,7 +104,7 @@ ENV/
 .ropeproject
 
 # Project Exclusion
-conf/main.yml
+instance
 data
 _scripts
 

@@ -12,7 +12,17 @@ from flask import Flask
 from .views.home import home
 
 # instantiate the application
-app = Flask(__name__)
+app = Flask(__name__, instance_relative_config=True)
+
+# initialize application configuration
+app.config.from_object('app.default_settings')
+
+# use the instance configuration
+app.config.from_pyfile('application.cfg', silent=True)
+
+# load the file specified by the APP_CONFIG_FILE environment variable
+# variables defined here will override those in the default configuration
+app.config.from_envvar('APP_CONFIG_FILE', silent=True)
 
 # Register application blueprints
 app.register_blueprint(home)
