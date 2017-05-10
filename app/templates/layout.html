@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>{{ config.APP_TITLE }}</title>
+
+    {% block head_css %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    {% endblock head_css %}
+    {% block head_js %}{% endblock head_js %}
 </head>
 <body>
-    {% block body %}
-    {% endblock body %}
+    <div class="navbar navbar-default navbar--main navbar--s-1">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1 id="logo" class="logo navbar-brand">
+                    <a class="logo__link" href="/">
+                        CMSC 265 Image Search Engine for Skin
+                    </a>
+                </h1>
+            </div>
+        </div>
+    </div>
+    {% block body %}{% endblock body %}
+    {% block body_js %}{% endblock body_js %}
 </body>
 </html>
 

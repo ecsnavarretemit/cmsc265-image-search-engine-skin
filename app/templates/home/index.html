@@ -1,6 +1,44 @@
 {% extends "layout.html" %}
 
 {% block body %}
-Home
+<div class="container">
+    <div class="search-results row">
+        {% for item in range(0, 50) %}
+        <div class="search-results__item col-sm-4 col-md-4 col-lg-3">
+            <div class="aspect aspect--16x9">
+                <div class="aspect__inner">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=320%C3%97180&w=320&h=180" alt="Placeholder" class="img-responsive aspect__media-content" />
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <nav class="col-xs-12 search-results__pagination">
+            <ul class="pagination">
+                <li class="disabled">
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                {% for item in range(1, 6) %}
+                <li>
+                    <a href="#">
+                        {{ item }}
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                {% endfor %}
+
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 {% endblock body %}
+
 
