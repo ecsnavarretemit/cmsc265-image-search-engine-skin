@@ -6,11 +6,16 @@
 # Licensed under MIT
 # Version 1.0.0-alpha1
 
+import os
+
 #========================================================
 # [Flask-specific configuration] ::start
 #========================================================
 
 DEBUG = False
+
+CACHE_TYPE = "filesystem"
+CACHE_DIRECTORY = os.path.join(os.getcwd(), "data/cache")
 
 #========================================================
 # [Flask-specific configuration] ::end
