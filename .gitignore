@@ -113,7 +113,7 @@ assets/*
 !assets/img
 
 # output images
-out
+app/static/img/detected-skins
 
 # ctags
 tags

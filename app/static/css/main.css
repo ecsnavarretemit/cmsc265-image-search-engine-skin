@@ -16,9 +16,15 @@
  * [Search Results] ::start
  *---------------------------------------------------*/
 
- .search-results__item { margin-bottom: 20px; }
+.search-results__item { margin-bottom: 20px; }
 
- .search-results__pagination { text-align: center; }
+.search-results__caption {
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.search-results__pagination { text-align: center; }
 
  /*---------------------------------------------------
  * [Search Results] ::start
