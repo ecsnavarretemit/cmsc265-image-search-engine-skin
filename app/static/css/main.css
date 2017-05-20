@@ -33,8 +33,14 @@
 
 .search-results__pagination { text-align: center; }
 
-.search-results__item img { visibility: hidden; }
-.search-results__item img.loaded { visibility: visible; }
+.search-results__item img {
+    opacity: 0;
+
+    -webkit-transition: opacity  ease-in 0.5s;
+    -moz-transition: opacity  ease-in 0.5s;
+    transition: opacity ease-in 0.5s;
+}
+.search-results__item img.loaded { opacity: 1; }
 
  /*---------------------------------------------------
  * [Search Results] ::start
