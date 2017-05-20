@@ -57,18 +57,28 @@ def index():
     # do something if the number of found images is 0
     num_images = len(images)
     if num_images > 0:
-      # sort the images based on the percentage
-      images.sort(key=extract_percentage, cmp=lambda x, y: int(x - y))
-
-      # reverse the ordering
-      images = list(reversed(images))
-
       # convert the list of paths to list of dictionaries containing image metadata
-      images = map(lambda x: { # pylint: disable=W0110
-        'path_normal': x,
-        'path_thumb': x,
-        'percent': extract_percentage(x)
+      images = map(lambda image: { # pylint: disable=W0110
+        'path_normal': image,
+        'path_thumb': image,
+        'percent': extract_percentage(image)
       }, images)
+
+      # define a comparator function for use in sorting
+      def img_sort_comparator(image1_percent, image2_percent):
+        result = image1_percent - image2_percent
+
+        # return positive 1 even if the difference is only in decimals
+        if result > 0:
+          return 1
+        elif result < 0:
+          return -1
+
+        # if the result is equal, return 0
+        return 0
+
+      # sort the images based on the percentage and reverse the ordering (should be descending order)
+      images.sort(key=lambda image_meta: image_meta['percent'], cmp=img_sort_comparator, reverse=True)
 
       # split the image n per item, where n is dependent to the value set in the configuration
       images = [images[i:(i + num_images_per_page)] for i in range(0, num_images, num_images_per_page)]
