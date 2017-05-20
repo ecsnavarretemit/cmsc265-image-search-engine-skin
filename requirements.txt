@@ -7,6 +7,7 @@ flask-paginate==0.4.5
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
+numpy==1.12.1
 packaging==16.8
 pyparsing==2.2.0
 six==1.10.0
