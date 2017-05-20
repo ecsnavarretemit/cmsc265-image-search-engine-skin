@@ -38,7 +38,7 @@ def index():
   images_meta = cache.get(cache_key)
 
   # if images is not on the cache, fetch all images from the directory
-  # and cache it for 15 minutes
+  # and cache it for n value of time
   if images_meta is None:
     # set default empty value to the fetch images
     stored_images = []
@@ -79,8 +79,8 @@ def index():
       'total': num_images
     }
 
-    # cache it for 15 minutes
-    cache.set(cache_key, images_meta, timeout=900)
+    # cache it for n value of time depending on the value of configuration
+    cache.set(cache_key, images_meta, timeout=app.config['SKIN_DETECT_CACHE_TTL'])
 
   # get the number of pages in the pagination
   num_pages = len(images_meta['items'])
