@@ -99,6 +99,7 @@ def index():
 
   # setup pagination
   pagination = Pagination(page=page,
+                          per_page=num_images_per_page,
                           total=images_meta['total'],
                           search=False,
                           record_name='images',
