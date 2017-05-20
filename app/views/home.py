@@ -7,8 +7,8 @@
 # Version 1.0.0-alpha1
 
 import os
-import fnmatch
 from app import app, cache
+from app.utils import get_images
 from flask import Blueprint, render_template, request
 from flask_paginate import Pagination
 
@@ -106,26 +106,6 @@ def extract_percentage(image):
   basename = os.path.basename(image)
 
   return float(basename[1:basename.find('-')])
-
-def get_images(source_directory, **kwargs):
-  # set default values for keyword arguments
-  extensions = kwargs.get('extensions', ['jpg', 'png'])
-
-  # get all images by iterating the valur of source_directory recursively
-  images = []
-
-  # throw some error when the source_directory does not exist
-  if not os.path.exists(source_directory):
-    pass
-
-  # walk starting from the root of the value of source_directory until to the very last child of it
-  # then get all files that matches the value of the extensions parameter
-  for root, _, filenames in os.walk(source_directory):
-    for extension in extensions:
-      for filename in fnmatch.filter(filenames, '*.' + extension):
-        images.append(os.path.join(root, filename))
-
-  return images
 
 #===================================================
 # [View Helpers] ::end
