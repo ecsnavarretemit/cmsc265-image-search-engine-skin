@@ -16,7 +16,7 @@
                     <a href="{{ item.path_normal }}" class="link search-results__link" data-size="800x450" data-skin-percent="{{ item.percent }}">
                         <div class="aspect aspect--16x9">
                             <div class="aspect__inner">
-                                <img src="{{ item.path_thumb }}" alt="Placeholder" class="img-responsive aspect__media-content" />
+                                <img data-original="{{ item.path_thumb }}" alt="Image containing skin {{ item.percent }}%" class="img-responsive aspect__media-content" />
                             </div>
                         </div>
                     </a>
@@ -97,8 +97,15 @@
 {% endblock body %}
 
 {% block body_js %}
+    <script>
+        (function(win, doc) {
+            // lazyload options
+            win.lazyLoadOptions = {};
+        })(window, document)
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha256-iG1tiE5xJSJQhKdeOW4cPiSy+RTrnRKjjjrVQ0hexug=" crossorigin="anonymous" defer="defer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.js" integrity="sha256-5gTrp3MSjanY3RmAR5ybbmMG84WO1SoxDnK7dzQhqzM=" crossorigin="anonymous" defer="defer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/7.2.2/lazyload.transpiled.min.js" integrity="sha256-adUzgmafl+AeCQbdjIAMX7PXOCSRJX71zgG9/Pjf/xc=" crossorigin="anonymous" async></script>
     <script src="{{ url_for('static', filename="js/home.js") }}" defer="defer"></script>
 {% endblock body_js %}
 

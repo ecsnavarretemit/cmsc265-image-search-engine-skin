@@ -33,6 +33,9 @@
 
 .search-results__pagination { text-align: center; }
 
+.search-results__item img { visibility: hidden; }
+.search-results__item img.loaded { visibility: visible; }
+
  /*---------------------------------------------------
  * [Search Results] ::start
  *---------------------------------------------------*/

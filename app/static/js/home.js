@@ -210,7 +210,7 @@
         }
     };
 
-    // execute above function
+    // execute photoswipe
     initPhotoSwipeFromDOM('.search-results .search-results__item');
 })(window, document);
 
