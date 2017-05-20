@@ -3,21 +3,25 @@
 {% block body %}
 <div class="container">
     <div class="search-results row">
-        {% for item in images %}
-        <div class="search-results__item col-sm-4 col-md-4 col-lg-3">
-            <div class="aspect aspect--16x9">
-                <div class="aspect__inner">
-                    <img src="{{ item.path_thumb }}" alt="Placeholder" class="img-responsive aspect__media-content" data-skin-percent="{{ item.percent }}" data-orig-src="{{ item.path_thumb }}" />
+        {% if images|length > 1 %}
+            {% for item in images %}
+            <div class="search-results__item col-sm-4 col-md-4 col-lg-3">
+                <div class="aspect aspect--16x9">
+                    <div class="aspect__inner">
+                        <img src="{{ item.path_thumb }}" alt="Placeholder" class="img-responsive aspect__media-content" data-skin-percent="{{ item.percent }}" data-orig-src="{{ item.path_thumb }}" />
+                    </div>
                 </div>
+
+                <span class="search-results__caption">Skin Percent: {{ item.percent }}%</span>
             </div>
+            {% endfor %}
 
-            <span class="search-results__caption">Skin Percent: {{ item.percent }}%</span>
-        </div>
-        {% endfor %}
-
-        <nav class="col-xs-12 search-results__pagination">
-            {{ pagination.links }}
-        </nav>
+            <nav class="col-xs-12 search-results__pagination">
+                {{ pagination.links }}
+            </nav>
+        {% else %}
+            <h2 class="message">{{ message }}</h2>
+        {% endif %}
     </div>
 </div>
 {% endblock body %}
