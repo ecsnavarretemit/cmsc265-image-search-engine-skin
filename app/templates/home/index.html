@@ -1,29 +1,105 @@
 {% extends "layout.html" %}
 
+{% block head_css %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha256-rlldBDOCxqXAE1fRopHG2SqpgWisq17/3Oleo+1CBKo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha256-kQW7k22C0skJMSPxgEI2VHR0LPHeygi8SRYNvV/DB2w=" crossorigin="anonymous" />
+{% endblock head_css %}
+
 {% block body %}
 <div class="container">
-    <div class="search-results row">
-        {% if images|length > 1 %}
-            {% for item in images %}
-            <div class="search-results__item col-sm-4 col-md-4 col-lg-3">
-                <div class="aspect aspect--16x9">
-                    <div class="aspect__inner">
-                        <img src="{{ item.path_thumb }}" alt="Placeholder" class="img-responsive aspect__media-content" data-skin-percent="{{ item.percent }}" data-orig-src="{{ item.path_thumb }}" />
-                    </div>
+    <div class="search-results">
+        <div class="search-results__container row">
+            {% if images|length > 1 %}
+                {% for item in images %}
+                <div class="search-results__item col-sm-4 col-md-4 col-lg-3">
+                    <a href="{{ item.path_normal }}" class="link search-results__link" data-size="800x450" data-skin-percent="{{ item.percent }}">
+                        <div class="aspect aspect--16x9">
+                            <div class="aspect__inner">
+                                <img src="{{ item.path_thumb }}" alt="Placeholder" class="img-responsive aspect__media-content" />
+                            </div>
+                        </div>
+                    </a>
+
+                    <span class="caption search-results__caption">Skin Percent: {{ item.percent }}%</span>
                 </div>
+                {% endfor %}
+            {% endif %}
+        </div>
 
-                <span class="search-results__caption">Skin Percent: {{ item.percent }}%</span>
-            </div>
-            {% endfor %}
-
+        {% if images|length > 1 %}
+        <div class="row">
             <nav class="col-xs-12 search-results__pagination">
                 {{ pagination.links }}
             </nav>
-        {% else %}
-            <h2 class="message">{{ message }}</h2>
+        </div>
+        {% endif %}
+
+        {% if images|length == 0 %}
+        <h2 class="message">{{ message }}</h2>
         {% endif %}
     </div>
 </div>
+
+<!-- [Photoswipe] ::start -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+
+    <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- [Photoswipe] ::end -->
 {% endblock body %}
+
+{% block body_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha256-iG1tiE5xJSJQhKdeOW4cPiSy+RTrnRKjjjrVQ0hexug=" crossorigin="anonymous" defer="defer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.js" integrity="sha256-5gTrp3MSjanY3RmAR5ybbmMG84WO1SoxDnK7dzQhqzM=" crossorigin="anonymous" defer="defer"></script>
+    <script src="{{ url_for('static', filename="js/home.js") }}" defer="defer"></script>
+{% endblock body_js %}
 
 
