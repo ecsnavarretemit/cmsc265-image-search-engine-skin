@@ -26,7 +26,7 @@ def index():
   message = ""
 
   page = request.args.get('page')
-  num_images_per_page = 50
+  num_images_per_page = app.config['SKIN_DETECT_RESULTS_PER_PAGE']
 
   # set page to 1 if it is none
   if page is None:
@@ -34,7 +34,7 @@ def index():
   else:
     page = int(page)
 
-  skins_folder = os.path.join(app.root_path, 'static/img/detected-skins')
+  skins_folder = app.config['SKIN_DETECT_OUTPUT_DIR']
   images_meta = cache.get(cache_key)
 
   # if images is not on the cache, fetch all images from the directory
@@ -70,7 +70,7 @@ def index():
         'percent': extract_percentage(x)
       }, images)
 
-      # split the image 50 per item
+      # split the image n per item, where n is dependent to the value set in the configuration
       images = [images[i:(i + num_images_per_page)] for i in range(0, num_images, num_images_per_page)]
 
     # save the metadata to the dictionary
@@ -105,6 +105,7 @@ def index():
                           bs_version=3,
                           css_framework='bootstrap')
 
+  # pass the template variables and render the template
   return render_template('home/index.html',
                          message=message,
                          images=image_subset,

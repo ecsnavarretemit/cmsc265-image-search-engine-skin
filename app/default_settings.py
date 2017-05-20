@@ -34,6 +34,7 @@ SKIN_DETECT_INPUT_DIR = os.path.join(os.getcwd(), "assets/img/input-for-skin-det
 SKIN_DETECT_OUTPUT_DIR = os.path.join(os.getcwd(), "app/static/img/detected-skins")
 SKIN_DETECT_IM_WIDTH = 800
 SKIN_DETECT_IM_HEIGHT = 450
+SKIN_DETECT_RESULTS_PER_PAGE = 50
 
 #========================================================
 # [Application-specific configuration] ::end
