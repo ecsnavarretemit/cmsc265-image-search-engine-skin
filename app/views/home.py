@@ -14,6 +14,10 @@ from flask_paginate import Pagination
 
 home = Blueprint('home', __name__, url_prefix='/')
 
+#===================================================
+# [Views] ::start
+#===================================================
+
 @home.route('/', methods=['GET'])
 def index():
   cache_key = "detected_skins"
@@ -51,7 +55,12 @@ def index():
     # reverse the ordering
     images = list(reversed(images))
 
-    images = map(lambda x: {'path': x, 'percent': extract_percentage(x)}, images) # pylint: disable=W0110
+    # convert the list of paths to list of dictionaries containing image metadata
+    images = map(lambda x: { # pylint: disable=W0110
+      'path_normal': x,
+      'path_thumb': x,
+      'percent': extract_percentage(x)
+    }, images)
 
     # split the image 50 per item
     images = [images[i:(i + num_images_per_page)] for i in range(0, num_images, num_images_per_page)]
@@ -84,6 +93,15 @@ def index():
 
   return render_template('home/index.html', images=image_subset, num_pages=num_pages, pagination=pagination)
 
+#===================================================
+# [Views] ::end
+#===================================================
+
+
+#===================================================
+# [View Helpers] ::start
+#===================================================
+
 def extract_percentage(image):
   basename = os.path.basename(image)
 
@@ -108,5 +126,9 @@ def get_images(source_directory, **kwargs):
         images.append(os.path.join(root, filename))
 
   return images
+
+#===================================================
+# [View Helpers] ::end
+#===================================================
 
 
