@@ -32,7 +32,7 @@ Follow these steps to install the setup the application:
 
 ## Running the Program
 
-You can run the python scripts by invoking `python run.py ` or `./run.py` to start the Flask Application.
+You can run the program by invoking `python run.py ` or `./run.py` to start the Flask application provided that the images have been already processed. If the images are not yet processed, execute the image processing script using the command `python bootstrap.py` or `./bootstrap.py`. This will take time depending on the number of images to be processed so please be patient.
 
 ## License
 
