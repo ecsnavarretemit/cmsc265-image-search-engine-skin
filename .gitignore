@@ -111,9 +111,10 @@ _scripts
 # sample images
 assets/*
 !assets/img
+assets/img/input-for-skin-detection
 
 # output images
-out
+app/static/img/detected-skins
 
 # ctags
 tags
