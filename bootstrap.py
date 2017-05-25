@@ -7,7 +7,7 @@
 #   Nelson Tejara <nhtejara@up.edu.ph>
 #
 # Licensed under MIT
-# Version 1.0.0-alpha1
+# Version 1.0.0
 
 from app import app, cache
 from app.utils.exceptions import InvalidDimensionsException, NoImagesException

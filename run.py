@@ -6,7 +6,7 @@
 #   Exequiel Ceasar Navarrete <esnavarrete1@up.edu.ph>
 #
 # Licensed under MIT
-# Version 1.0.0-alpha1
+# Version 1.0.0
 
 from app import app
 
